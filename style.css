@@ -1,0 +1,266 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--body-bg, #f5f3f6);
+    transition: background-color 0.3s ease
+}
+
+
+.app {
+    background: var(--bs-primary, black);
+    color: var(--text-color);
+    width: 60vw;
+    height: auto;
+    min-height: 60vh;
+    margin: 50px auto;
+    text-align: center;
+    border-radius: 10px;
+    padding: 30px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+
+}
+
+
+.app h1 {
+    font-size: 25px;
+    color: #141414;
+    font-weight: 600;
+    border-bottom: 1px solid rgb(255, 255, 255);
+    padding-bottom: 30px
+}
+
+.quiz {
+    padding: 20px 0;
+}
+
+.quiz h2 {
+    font: size 18px;
+    color: rgb(255, 255, 255);
+    font-weight: 600
+}
+
+.btn {
+    background: white;
+    color: #0B0C10;
+    font-weight: 600;
+    width: 100%;
+    border: 1px solid #0B0C10;
+    padding: 10px;
+    margin: 10px 0;
+    text-align: left;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s
+}
+
+.btn:hover:not([disabled]) {
+    background: #c2c2c2;
+    color: #ffffff;
+
+}
+
+.btn:disabled {
+    cursor: no-drop;
+}
+
+#next-btn {
+    background: black;
+    color: #ffff;
+    font-weight: 600;
+    width: 150px;
+    border: 0;
+    padding: 10px;
+    margin: 20px auto 0;
+    border-radius: 4px;
+    cursor: pointer;
+    display: none
+}
+
+.correct {
+
+    background: #9aeabc;
+
+}
+
+.incorrect {
+    background: rgb(233, 132, 132);
+}
+
+/* Quiz container styled with Bootstrap's primary color */
+#quiz-container {
+    border: 3px solid var(--bs-primary);
+    padding: 20px;
+    border-radius: 10px;
+    background-color: var(--body-bg, #f8f9fa);
+    /* light background */
+}
+
+/* Option buttons use Bootstrap primary color */
+.option {
+    background-color: var(--bs-primary);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.option:hover {
+    opacity: 0.85;
+}
+
+:root {
+    --bs-primary: rgb(14, 45, 78);
+    --body-bg: #f5f3f6;
+    --text-color: #ffffff;
+
+
+}
+
+#color-change {
+    margin-left: 5%;
+    margin-top: 1%;
+
+}
+
+
+
+.navbar {
+    background-color: var(--bs-primary) !important;
+    transition: background-color 0.3s ease;
+}
+
+.nav-link {
+    color: var(--text-color) !important;
+    transition: color 0.3s ease;
+}
+
+.logo {
+    color: white
+}
+
+#title {
+    color: white
+}
+
+.footer {
+    background-color: var(--bs-primary);
+}
+
+.hero-part {
+    background-color: var(--bs-primary);
+}
+
+.quote {
+    display: flex
+}
+
+/* General About Section */
+#about {
+    background-color: #f8f9fa;
+    /* light gray background */
+    padding: 60px 20px;
+    border-radius: 10px;
+    margin-top: 40px;
+}
+
+/* Headings */
+#about h2 {
+    color: var(--bs-primary);
+    /* Bootstrap primary color */
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Features List */
+#about ul {
+    list-style-type: none;
+    /* remove default bullets */
+    padding: 0;
+}
+
+#about ul li {
+    background: var(--bs-light);
+    border-left: 5px solid var(--bs-primary);
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+}
+
+/* Quotes Section */
+.science.quotes {
+    margin-top: 30px;
+}
+
+.quote {
+    background-color: #ffffff;
+    border-left: 5px solid;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    font-style: italic;
+}
+
+.quote.well {
+    border-left-color: black;
+}
+
+/* Final Part Call-to-Action */
+.final-part {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.final-part p {
+    font-size: 1.2rem;
+    font-weight: bold;
+
+}
+
+#leaderboard-list li:nth-child(1) {
+    background-color: gold;
+}
+
+#leaderboard-list li:nth-child(2) {
+    background-color: silver;
+}
+
+#leaderboard-list li:nth-child(3) {
+    background-color: #cd7f32;
+    /* bronze */
+}
+
+#leaderboard-list li:nth-child(1) {
+    background-color: gold;
+}
+
+#leaderboard-list li:nth-child(2) {
+    background-color: silver;
+}
+
+#leaderboard-list li:nth-child(3) {
+    background-color: #cd7f32;
+}
+
+.start-quiz-btn {
+    width: 20%;
+    height: 25%;
+    border-radius: 4px
+}
+
+.start-quiz-btn:hover {
+
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--bs-primary);
+    transition: 0.4s;
+    border: none;
+}

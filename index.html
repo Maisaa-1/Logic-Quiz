@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logic quiz</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+
+
+<body>
+  <!-- nav bar -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand logo" href="#">Logic Quiz</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#quiz">Quiz</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main>
+    <div id="color-change">
+      <div class="mb-3">
+        <label for="colorInput" class="form-label">Pick Theme Color:</label>
+        <input type="color" class="form-control form-control-color" id="colorInput" value="#007BFF"
+          title="Choose your color">
+      </div>
+    </div>
+    <!-- Hero Banner -->
+
+    <div id="home">
+      <header class="hero-part text-white text-center py-5">
+        <h1>Welcome to the Math & Physics Quiz!</h1>
+        <p class="lead">Challenge your brain, learn science, and have fun.</p>
+        <a href="#quiz" class="btn btn-light btn-lg mt-3">Start Quiz</a>
+      </header>
+
+      <!-- Carousel -->
+      <div id="quizCarousel" class="carousel slide mt-4" data-bs-ride="carousel" data-bs-interval="2000">
+        <div class="carousel-inner">
+          <div class="carousel-item active text-center bg-light p-5">
+            <h2>🧮 Test Your Math Skills</h2>
+            <p>Sharpen your problem-solving abilities with fun challenges.</p>
+          </div>
+          <div class="carousel-item text-center bg-light p-5">
+            <h2>⚛️ Explore Physics Concepts</h2>
+            <p>Test your physics knowledge in torque, motion, and energy through interactive questions.</p>
+          </div>
+          <div class="carousel-item text-center bg-light p-5">
+            <h2>🏆 Compete on the Leaderboard</h2>
+            <p>See how you rank among the best minds!</p>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#quizCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#quizCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
+
+      <!-- Leaderboard Preview -->
+      <div class="container mt-5">
+        <h2 style="color:var(--bs-primary)">Leaderboard Preview</h2>
+        <ul class="list-group" id="leaderboard-list">
+          <li class="list-group-item">Alice: 95</li>
+          <li class="list-group-item">Bob: 88</li>
+          <li class="list-group-item">Charlie: 82</li>
+        </ul>
+      </div>
+
+
+
+
+      </section>
+      <!-- about section -->
+      <section id="about">
+        <div class="container container-fluid">
+          <h2 class="mark">About this website</h2>
+          <p>This site is designed to make Maths and Physics fun, interactive and accessible to everyone </p>
+          <p>Our mission is to help learners sharpen their problem‑solving skills while enjoying science.</p>
+          <h2 class="mark">Features Highlight</h2>
+          <ul>
+            <li>Maths and Logic challenges</li>
+            <li>Fundamental Physics concepts challenges (Torque's equilibrium,forces...)</li>
+            <li>Leaderboard to inspire competition</li>
+            <li>Theme customization with color picker</li>
+          </ul>
+          <div class="science quotes">
+            <div class="quote">
+              <p>“The important thing is not to stop questioning.” – Albert Einstein</p>
+            </div>
+            <div class="quote well">
+              <p>"Science is a way of thinking much more than it is a body of knowledge"
+                -Carl Sagan
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+      <div class="container">
+        <div class="mb-3">
+          <div class="final-part">
+            <p>Ready to challenge and test your skills? Head to the quiz to see how you do!</p>
+          </div>
+          <label for="playerName" class="form-label">Enter your name:</label>
+          <input type="text" id="playerName" class="form-control" placeholder="Your name">
+        </div>
+        <a href="#quiz">
+          <button class="start-quiz-btn" onclick="startQuiz()">Start Quiz</button>
+        </a>
+      </div>
+      <!-- quiz -->
+
+      <section id="quiz">
+        <div class="app">
+          <h1 id="title">Logic Quiz</h1>
+          <div class="quiz">
+            <h2 id="question">Question goes here</h2>
+            <div id="answer-buttons">
+              <button class="btn">Answer1</button>
+              <button class="btn">Answer2</button>
+              <button class="btn">Answer3</button>
+              <button class="btn">Answer4</button>
+            </div>
+            <button id="next-btn">Next</button>
+          </div>
+        </div>
+      </section>
+
+  </main>
+
+
+
+
+
+
+
+
+  <footer class="footer text-white text-center py-3 mt-5">
+    <p>© 2026 Made with ❤️ by Maisaa Assy. All rights reserved</p>
+
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="index.js"></script>
+
+</body>
+
+
+</html>
