@@ -1,4 +1,4 @@
-const firebase = window.firebase;
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
 import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit } 
 from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
@@ -229,18 +229,20 @@ if (nextButton) {
 
 // ---------------- LEADERBOARD LOGIC ----------------
 async function saveScore(name, score) {
+  console.log("Attempting to save score:", name, score);
+
   try {
-    await addDoc(collection(db, "leaderboard"), {
-      name: name,
-      score: score,
+    const docRef = await addDoc(collection(db, "leaderboard"), {
+      name,
+      score,
       timestamp: Date.now()
     });
-    console.log("Score saved!");
+
+    console.log("Score saved with ID:", docRef.id);
   } catch (error) {
-    console.error("Error saving score:", error);
+    console.error("SAVE FAILED:", error);
   }
 }
-
 
 
 async function showLeaderboard() {
