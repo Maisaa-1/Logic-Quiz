@@ -1,18 +1,22 @@
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
 
-// Replace with your actual Firebase config from the console
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit } 
+from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyDOukIXrZc6a054at_-_TgchaveXFWMUkQ",
-    authDomain: "quiz-leaderboard-68732.firebaseapp.com",
-    projectId: "quiz-leaderboard-68732",
-    storageBucket: "quiz-leaderboard-68732.firebasestorage.app",
-    messagingSenderId: "444499141856",
-    appId: "1:444499141856:web:232943f732453d3374dc85",
-    measurementId: "G-SZT84LDFK9"
+// Firebase config (must come FIRST)
+const firebaseConfig = {
+  apiKey: "AIzaSyDOukIXrZc6a054at_-_TgchaveXFWMUkQ",
+  authDomain: "quiz-leaderboard-68732.firebaseapp.com",
+  projectId: "quiz-leaderboard-68732",
+  storageBucket: "quiz-leaderboard-68732.firebasestorage.app",
+  messagingSenderId: "444499141856",
+  appId: "1:444499141856:web:232943f732453d3374dc85",
+  measurementId: "G-SZT84LDFK9"
 };
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 
 
@@ -147,22 +151,24 @@ function startQuiz() {
 }
 
 function showQuestion() {
-  resetState();
-  const currentQuestion = questions[currentQuestionIndex];
-  const questionNo = currentQuestionIndex + 1;
-  questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
+    resetState();
+    let currentQuestion = questions[currentQuestionIndex];
+    let questionNo = currentQuestionIndex + 1;
+    questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
 
-  currentQuestion.answers.forEach(answer => {
-    const button = document.createElement("button");
-    button.innerHTML = answer.text;
-    button.classList.add("btn");
-    if (answer.correct) {
-      button.dataset.correct = answer.correct;
-    }
-    button.addEventListener("click", selectAnswer);
-    answerButtons.appendChild(button);
-  });
+    currentQuestion.answers.forEach(answer => {
+        const button = document.createElement("button");
+        button.innerHTML = answer.text;
+        button.classList.add("btn");
+        answerButtons.appendChild(button);
+
+        if (answer.correct) {
+            button.dataset.correct = answer.correct;
+        }
+        button.addEventListener("click", selectAnswer);
+    });
 }
+
 function resetState() {
     if (nextButton) nextButton.style.display = "none";
     while (answerButtons && answerButtons.firstChild) {
