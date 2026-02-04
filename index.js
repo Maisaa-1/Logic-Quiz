@@ -1,3 +1,22 @@
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+// Replace with your actual Firebase config from the console
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDOukIXrZc6a054at_-_TgchaveXFWMUkQ",
+    authDomain: "quiz-leaderboard-68732.firebaseapp.com",
+    projectId: "quiz-leaderboard-68732",
+    storageBucket: "quiz-leaderboard-68732.firebasestorage.app",
+    messagingSenderId: "444499141856",
+    appId: "1:444499141856:web:232943f732453d3374dc85",
+    measurementId: "G-SZT84LDFK9"
+};
+
+
+
+
 console.log("hello")
 const colorInput = document.getElementById("colorInput");
 colorInput.addEventListener("input", function () {
@@ -205,30 +224,40 @@ if (nextButton) {
 }
 
 // ---------------- LEADERBOARD LOGIC ----------------
-function saveScore(name, score) {
-    let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
-
-    leaderboard.push({ name, score });
-    leaderboard.sort((a, b) => b.score - a.score);
-    leaderboard = leaderboard.slice(0, 10);
-
-    localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
-}
-
-function showLeaderboard() {
-    let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
-    const list = document.getElementById("leaderboard") || document.getElementById("leaderboard-list");
-    if (!list) return;
-
-    list.innerHTML = "";
-    leaderboard.forEach((entry, index) => {
-        const li = document.createElement("li");
-        li.className = "list-group-item d-flex justify-content-between align-items-center";
-        li.innerHTML = `<strong>${index + 1}. ${entry.name}</strong> <span>${entry.score}</span>`;
-        list.appendChild(li);
+async function saveScore(name, score) {
+  try {
+    await db.collection("leaderboard").add({
+      name: name,
+      score: score,
+      timestamp: Date.now()
     });
+  } catch (error) {
+    console.error("Error saving score:", error);
+  }
 }
 
+
+async function showLeaderboard() {
+  const list = document.getElementById("leaderboard") || document.getElementById("leaderboard-list");
+  list.innerHTML = "";
+
+  try {
+    const snapshot = await db.collection("leaderboard")
+      .orderBy("score", "desc")
+      .limit(10)
+      .get();
+
+    snapshot.forEach((doc, index) => {
+      const entry = doc.data();
+      const li = document.createElement("li");
+      li.className = "list-group-item d-flex justify-content-between align-items-center";
+      li.innerHTML = `<strong>${index + 1}. ${entry.name}</strong> <span>${entry.score}</span>`;
+      list.appendChild(li);
+    });
+  } catch (error) {
+    console.error("Error loading leaderboard:", error);
+  }
+}
 // ---------------- PAGE CHECK ----------------
 document.addEventListener("DOMContentLoaded", () => {
     // If quiz elements exist, start quiz
