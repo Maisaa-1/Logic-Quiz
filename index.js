@@ -1,4 +1,4 @@
-
+const firebase = window.firebase;
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
 import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit } 
 from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
@@ -230,26 +230,35 @@ if (nextButton) {
 // ---------------- LEADERBOARD LOGIC ----------------
 async function saveScore(name, score) {
   try {
-    await db.collection("leaderboard").add({
+    await addDoc(collection(db, "leaderboard"), {
       name: name,
       score: score,
       timestamp: Date.now()
     });
+    console.log("Score saved!");
   } catch (error) {
     console.error("Error saving score:", error);
   }
 }
 
 
+
 async function showLeaderboard() {
-  const list = document.getElementById("leaderboard") || document.getElementById("leaderboard-list");
+  const list =
+    document.getElementById("leaderboard") ||
+    document.getElementById("leaderboard-list");
+
+  if (!list) return;
   list.innerHTML = "";
 
   try {
-    const snapshot = await db.collection("leaderboard")
-      .orderBy("score", "desc")
-      .limit(10)
-      .get();
+    const q = query(
+      collection(db, "leaderboard"),
+      orderBy("score", "desc"),
+      limit(10)
+    );
+
+    const snapshot = await getDocs(q);
 
     snapshot.forEach((doc, index) => {
       const entry = doc.data();
@@ -262,6 +271,7 @@ async function showLeaderboard() {
     console.error("Error loading leaderboard:", error);
   }
 }
+
 // ---------------- PAGE CHECK ----------------
 document.addEventListener("DOMContentLoaded", () => {
     // If quiz elements exist, start quiz
